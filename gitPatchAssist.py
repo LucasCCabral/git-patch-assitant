@@ -51,6 +51,10 @@ def getWorkBranch():
 def getRemoteURL():
         return subprocess.getoutput("git config --get remote.origin.url")
 
+def checkoutToCommit(commit):
+        cmd = "git checkout " + str(commit)
+        run(cmd)
+
 def getCommitMessage(commit):
         with open("aux.txt","r") as aux:
                 for line in aux:
