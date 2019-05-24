@@ -55,6 +55,9 @@ def checkoutToCommit(commit):
         cmd = "git checkout " + str(commit)
         run(cmd)
 
+def buildAndroidApp():
+        return subprocess.getoutput("./gradlew assembleDebug | grep BUILD")
+
 def getCommitMessage(commit):
         with open("aux.txt","r") as aux:
                 for line in aux:
