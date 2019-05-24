@@ -58,6 +58,21 @@ def checkoutToCommit(commit):
 def buildAndroidApp():
         return subprocess.getoutput("./gradlew assembleDebug | grep BUILD")
 
+def check_if_building(commit):
+        checkoutToCommit(commit)
+        output = buildAndroidApp()
+        return [commit,output]
+
+def check_if_commits_build(commitList):
+        build_log = list()
+        for commit in commitList:
+                build_log.append(check_if_building(commit))
+        return build_log
+
+def make_commit_build_log(commitList,file_name):
+        build_log = check_if_commits_build(commitList)
+        write_list_to_file(build_log,file_name)
+
 def getCommitMessage(commit):
         with open("aux.txt","r") as aux:
                 for line in aux:
