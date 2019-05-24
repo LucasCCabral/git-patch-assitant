@@ -26,6 +26,12 @@ def getCommitShaList(fp,lastCommit):
                                 commit_list.append(line.strip("commit").strip('\n').strip(" "))
         return commit_list
 
+
+def write_list_to_file(ls,fileName):
+        with open(fileName,"w") as fil:
+                for row in ls:
+                        fil.write(str(row) + '\n')
+
 def run(cmd):
         process = subprocess.Popen(cmd,shell=True)
         process.wait()
