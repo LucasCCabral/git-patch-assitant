@@ -56,7 +56,7 @@ def checkoutToCommit(commit):
         run(cmd)
 
 def buildAndroidApp():
-        return subprocess.getoutput("./gradlew assembleDebug | grep BUILD")
+        return subprocess.getoutput("./gradlew assembleDebug 2>&1  | grep BUILD ")
 
 def check_if_building(commit):
         checkoutToCommit(commit)
